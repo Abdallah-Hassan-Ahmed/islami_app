@@ -23,7 +23,7 @@ class SuraWidget extends StatelessWidget {
                 children: [
                   Image.asset(AppImages.icSuraNumber),
                   Text(
-                    "${num + 1}",
+                    "${num+1 }",
                     style: AppStyle.bold16White.copyWith(fontSize: 11),
                   ),
                 ],
