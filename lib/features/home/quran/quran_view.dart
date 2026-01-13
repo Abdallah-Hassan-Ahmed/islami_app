@@ -26,21 +26,18 @@ class _QuranViewState extends State<QuranView> {
           SuraNameWidget(
             onSearch: (list) {
               setState(() {
-                filterIndex =
-                    list.isEmpty ? List.generate(114, (i) => i) : list;
+                filterIndex = list.isEmpty
+                    ? List.generate(114, (i) => i)
+                    : list;
               });
             },
           ),
-          SizedBox(height: context.height * 0.02),
-          Text("Most Recently", style: AppStyle.bold16White),
-          SizedBox(height: context.height * 0.01),
+
           MostRecentlyList(),
           SizedBox(height: context.height * 0.02),
           Text("Suras List", style: AppStyle.bold16White),
-          SizedBox(height: context.height * 0.02),
-          Expanded(
-            child: SureList(filterIndex: filterIndex),
-          ),
+          SizedBox(height: context.height * 0.001),
+          Expanded(child: SureList(filterIndex: filterIndex)),
         ],
       ),
     );

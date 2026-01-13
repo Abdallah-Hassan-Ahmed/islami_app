@@ -5,20 +5,27 @@ import 'package:islami_app/core/themes/app_images.dart';
 import 'package:islami_app/core/themes/app_style.dart';
 
 class SuraContainer extends StatelessWidget {
-  const SuraContainer({super.key});
+  const SuraContainer({
+    super.key,
+    required this.engSuraName,
+    required this.arSuraName,
+    required this.num,
+  });
 
-  get height => null;
+  final String engSuraName;
+  final String arSuraName;
+  final String num;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(
-        left: context.width * 0.03,
-        top: context.height * 0.02,
-        bottom: context.height * 0.02,
+        left: context.width * 0.02,
+        top: context.height * 0.01,
+        bottom: context.height * 0.01,
       ),
-      width: context.width * 0.60,
-      height: context.height * 0.16,
+      width: context.width * 0.63,
+      height: context.height * 0.18,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         color: AppColors.goldColor,
@@ -29,16 +36,16 @@ class SuraContainer extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("Al-Anbiya", style: AppStyle.bold20Black),
-              Text("الأنبياء", style: AppStyle.bold20Black),
-              Text("112 Verses  ", style: AppStyle.bold12Black),
+              Text(engSuraName, style: AppStyle.bold20Black),
+              Text(arSuraName, style: AppStyle.bold20Black),
+              Text("$num Verses", style: AppStyle.bold12Black),
             ],
           ),
           Image.asset(
             AppImages.reading,
             color: AppColors.blackColor,
             height: context.height * 0.14,
-            width: context.width * 0.30,
+            width: context.width * 0.28,
           ),
         ],
       ),
