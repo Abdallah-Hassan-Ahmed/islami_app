@@ -7,7 +7,7 @@ import 'package:islami_app/core/themes/app_style.dart';
 class SuraNameWidget extends StatelessWidget {
   const SuraNameWidget({super.key, required this.onSearch});
 
-  final Function(List<int>) onSearch;
+  final Function(List<int>  , String) onSearch;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class SuraNameWidget extends StatelessWidget {
           }
         }
 
-        onSearch(filterList);
+        onSearch(filterList , newText);
       },
       style: AppStyle.bold16White,
       cursorColor: AppColors.goldColor,

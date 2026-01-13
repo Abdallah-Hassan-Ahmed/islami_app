@@ -23,7 +23,6 @@ class _MostRecentlyListState extends State<MostRecentlyList> {
     WidgetsBinding.instance.addPersistentFrameCallback((_) {
       provider.refreshMostRecently();
     });
-    
   }
 
   @override
@@ -32,6 +31,7 @@ class _MostRecentlyListState extends State<MostRecentlyList> {
     return Visibility(
       visible: provider.mostRecentlyList.isNotEmpty,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
           SizedBox(height: context.height * 0.02),

@@ -15,6 +15,7 @@ class QuranView extends StatefulWidget {
 
 class _QuranViewState extends State<QuranView> {
   List<int> filterIndex = List.generate(114, (index) => index);
+  bool showMostRecently = true;
 
   @override
   Widget build(BuildContext context) {
@@ -24,16 +25,16 @@ class _QuranViewState extends State<QuranView> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SuraNameWidget(
-            onSearch: (list) {
+            onSearch: (list , searchText) {
               setState(() {
+                showMostRecently = searchText.isEmpty;
                 filterIndex = list.isEmpty
                     ? List.generate(114, (i) => i)
                     : list;
               });
             },
           ),
-
-          MostRecentlyList(),
+          if (showMostRecently) MostRecentlyList(),
           SizedBox(height: context.height * 0.02),
           Text("Suras List", style: AppStyle.bold16White),
           SizedBox(height: context.height * 0.001),
