@@ -37,7 +37,10 @@ class SuraContainer extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(engSuraName, style: AppStyle.bold20Black),
-              Text(arSuraName, style: AppStyle.bold20Black),
+              Text(
+                arSuraName,
+                style: AppStyle.bold20Black.copyWith(fontFamily: 'Janna'),
+              ),
               Text("$num Verses", style: AppStyle.bold12Black),
             ],
           ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:islami_app/core/constants/const_data.dart';
 import 'package:islami_app/core/themes/app_images.dart';
 
 class Mosqe01Widget extends StatelessWidget {
@@ -7,9 +8,13 @@ class Mosqe01Widget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 157,
-      width: 291,
-      child: Image.asset(AppImages.mosque01),
+      height: 120,
+      width: 240,
+      child: Image.asset(
+        AppImages.mosque01,
+        height: context.height * 0.3,
+        width: context.width * 0.01,
+      ),
     );
   }
 }

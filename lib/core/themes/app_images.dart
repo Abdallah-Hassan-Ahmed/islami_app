@@ -1,5 +1,5 @@
 class AppImages {
-  AppImages._(); 
+  AppImages._();
 
   static const String basePath = 'assets/images';
 
@@ -11,9 +11,13 @@ class AppImages {
       '$basePath/HadithCardBackGround.png';
   static const String islamiLogo = '$basePath/islami_logo.png';
   static const String islami = '$basePath/Islami.png';
+  static const String hadethBg = '$basePath/HadithCardBackGround 1.png';
   static const String kabba = '$basePath/kabba.png';
   static const String timeBg = '$basePath/more_bg.png';
   static const String marhaba = '$basePath/Marhaba.png';
+
+  static const String maskSepha = '$basePath/Maskgroup.png';
+  static const String bodySepha = '$basePath/SebhaBody 1.png';
 
   static const String onBoarding2 = '$basePath/onBoarding2.png';
   static const String onBoarding3 = '$basePath/onBoarding3.png';

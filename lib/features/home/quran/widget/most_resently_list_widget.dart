@@ -3,6 +3,7 @@ import 'package:islami_app/core/constants/const_data.dart';
 import 'package:islami_app/core/constants/quran_resources.dart';
 import 'package:islami_app/core/providers/most_recently_provider.dart';
 import 'package:islami_app/core/themes/app_style.dart';
+import 'package:islami_app/features/home/quran/sura_detalis_view.dart';
 import 'package:islami_app/features/home/quran/widget/shard_prefs.dart';
 import 'package:islami_app/features/home/quran/widget/sura_container_widget.dart';
 import 'package:provider/provider.dart';
@@ -18,7 +19,6 @@ class _MostRecentlyListState extends State<MostRecentlyList> {
   late MostRecentlyProvider provider;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     WidgetsBinding.instance.addPersistentFrameCallback((_) {
       provider.refreshMostRecently();
@@ -43,13 +43,24 @@ class _MostRecentlyListState extends State<MostRecentlyList> {
             child: ListView.separated(
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
-                return SuraContainer(
-                  engSuraName: QuranResources
-                      .englishQuranSurahsLidt[provider.mostRecentlyList[index]],
-                  arSuraName: QuranResources
-                      .arabicAuranSurasList[provider.mostRecentlyList[index]],
-                  num: QuranResources
-                      .AyaNumberList[provider.mostRecentlyList[index]],
+                return InkWell(
+                  onTap: () {
+                    addMostRecently(provider.mostRecentlyList[index]);
+                    Navigator.pushNamed(
+                      context,
+                      SuraDetails.routeName,
+                      arguments: provider.mostRecentlyList[index],
+                    );
+                  },
+                  child: SuraContainer(
+                    engSuraName:
+                        QuranResources.englishQuranSurahsLidt[provider
+                            .mostRecentlyList[index]],
+                    arSuraName: QuranResources
+                        .arabicAuranSurasList[provider.mostRecentlyList[index]],
+                    num: QuranResources
+                        .AyaNumberList[provider.mostRecentlyList[index]],
+                  ),
                 );
               },
               separatorBuilder: (context, index) {

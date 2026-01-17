@@ -20,8 +20,8 @@ class IslamiWidget extends StatelessWidget {
             child: Image.asset(
               AppImages.islami,
               color: AppColors.goldColor,
-              height: 50,
-              width: 120,
+              height: context.height * 0.05,
+              width: context.width * 0.38,
             ),
           ),
         ],
