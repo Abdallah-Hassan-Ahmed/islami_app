@@ -5,6 +5,6 @@ class AppColors {
   static Color goldColor = Color(0xffE2BE7F);
   static Color whiteColor = Color(0xffFFFFFF);
   static Color grayColor = Color(0xff707070);
+  static Color brawnColor = Color(0xff856B3F);
   static Color transparentColor = Colors.transparent;
-
 }

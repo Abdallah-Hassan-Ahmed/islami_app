@@ -65,11 +65,11 @@ class _SephaViewState extends State<SephaView> {
                   child: GestureDetector(
                     onTap: () {
                       counter++;
-                      // لو خلصنا الأربع أذكار (132)
+                      
                       if (counter > 132) {
                         counter = 0;
                       }
-                      // تحديد الذكر الحالي
+                      
                       next = ((counter - 1) ~/ 33) % azkar.length;
                       turns += (1 / 30);
                       setState(() {});

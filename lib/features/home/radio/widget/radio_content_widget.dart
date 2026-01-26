@@ -1,0 +1,35 @@
+import 'package:flutter/material.dart';
+import 'package:islami_app/core/constants/const_data.dart';
+import 'package:islami_app/core/providers/radio_provider.dart';
+import 'package:islami_app/features/home/radio/widget/radio_contanier_widget.dart';
+import 'package:provider/provider.dart';
+
+class RadioContent extends StatelessWidget {
+  const RadioContent({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<RadioModelProvider>(
+      builder: (context, value, child) {
+        // Loading
+        if (value.isLoading) {
+          return const Center(child: CircularProgressIndicator());
+        }
+
+        // Error
+        if (value.errorMessage != null) {
+          return Center(child: Text(value.errorMessage!));
+        }
+
+        return ListView.separated(
+          padding: EdgeInsets.zero,
+          itemCount: value.radios.length,
+          itemBuilder: (context, index) =>
+              RadioContainer(radio: value.radios[index], index: index),
+          separatorBuilder: (context, index) =>
+              SizedBox(height: context.height * 0.02),
+        );
+      },
+    );
+  }
+}

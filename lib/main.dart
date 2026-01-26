@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:islami_app/core/providers/most_recently_provider.dart';
+import 'package:islami_app/core/services/time_servies.dart';
 import 'package:islami_app/core/themes/app_themes.dart';
 import 'package:islami_app/features/home/home_view.dart';
 import 'package:islami_app/features/home/quran/quran_view.dart';
 import 'package:islami_app/features/home/quran/sura_detalis_view.dart';
-import 'package:islami_app/features/home/sepha/sepha_view.dart';
 import 'package:islami_app/features/introduction/presentation/view/on_boarding_view.dart';
 import 'package:islami_app/features/splash/Presentation/view/splash_view.dart';
 import 'package:provider/provider.dart';
 
 void main() {
+  TimeServices().getPrayTime();
   runApp(
     ChangeNotifierProvider(
       create: (context) => MostRecentlyProvider(),

@@ -27,8 +27,15 @@ class AppImages {
   static const String mosque01 = '$basePath/Mosque-01.png';
   static const String mosque02 = '$basePath/Mosque-02.png';
 
+  static const String runAudio = '$basePath/Polygon 2.png';
+  static const String pause = '$basePath/Pause.png';
+  static const String volumeCross = '$basePath/Volume Cross.png';
+  static const String volumeHight = '$basePath/Volume High.png';
+  static const String runAudioBG = '$basePath/soundWave1.png';
+
   static const String cornerL = '$basePath/img_left_corner.png';
   static const String cornerR = '$basePath/img_right_corner.png';
+  static const String timeBG = '$basePath/timeCountaner.png';
 
   static const String quranBg = '$basePath/quran_bg.png';
   static const String quranSura = '$basePath/quranSura.png';
