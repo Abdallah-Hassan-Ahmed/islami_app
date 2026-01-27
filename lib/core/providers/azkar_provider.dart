@@ -18,12 +18,14 @@ class AzkarProvider extends ChangeNotifier {
       data.forEach((key, value) {
         final List list = value is List ? value : [];
         azkarMap[key] = list
-            .expand((e) => e is List ? e : [e]) // 🔥 حل أذكار الصباح
+            .expand((e) => e is List ? e : [e])
             .map((e) => Zekr.fromJson(e))
             .toList();
       });
 
+      debugPrint('AZKAR KEYS => ${azkarMap.keys}');
     } catch (e) {
+      debugPrint('❌ AZKAR ERROR: $e');
     }
 
     isLoading = false;

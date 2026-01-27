@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:islami_app/core/providers/azkar_provider.dart';
 import 'package:islami_app/features/introduction/presentation/widgets/shared_pref_helper.dart';
 import 'package:provider/provider.dart';
 
@@ -12,6 +13,7 @@ import 'package:islami_app/features/home/quran/sura_detalis_view.dart';
 import 'package:islami_app/features/introduction/presentation/view/on_boarding_view.dart';
 import 'package:islami_app/features/splash/Presentation/view/splash_view.dart';
 
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -24,6 +26,9 @@ void main() async {
         ChangeNotifierProvider(create: (_) => MostRecentlyProvider()),
         ChangeNotifierProvider(
           create: (_) => TimeProvider()..loadPrayTime(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => AzkarProvider(),
         ),
       ],
       child: IslamiApp(isOnBoardingSeen: isOnBoardingSeen),
@@ -41,8 +46,7 @@ class IslamiApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: AppThemes.themeData,
-      initialRoute:
-          SplashView.routeName,
+      initialRoute: SplashView.routeName,
       routes: {
         SplashView.routeName: (_) => SplashView(),
         OnBoardingView.routeName: (_) => const OnBoardingView(),

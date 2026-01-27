@@ -5,12 +5,25 @@ import 'package:islami_app/core/constants/const_data.dart';
 import 'package:islami_app/core/themes/app_colors.dart';
 import 'package:islami_app/core/themes/app_style.dart';
 import 'package:islami_app/core/providers/azkar_provider.dart';
-
-class AzkarDetailsView extends StatelessWidget {
+class AzkarDetailsView extends StatefulWidget {
   static const String routeName = 'azkaDetails';
   final String categoryKey;
 
   const AzkarDetailsView({super.key, required this.categoryKey});
+
+  @override
+  State<AzkarDetailsView> createState() => _AzkarDetailsViewState();
+}
+
+class _AzkarDetailsViewState extends State<AzkarDetailsView> {
+  @override
+  void initState() {
+    super.initState();
+
+    Future.microtask(() {
+      context.read<AzkarProvider>().loadAzkar();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +31,7 @@ class AzkarDetailsView extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: AppColors.goldColor,
         centerTitle: true,
-        title: Text(categoryKey, style: AppStyle.bold20Black),
+        title: Text(widget.categoryKey, style: AppStyle.bold20Black),
       ),
       body: Consumer<AzkarProvider>(
         builder: (context, provider, _) {
@@ -29,7 +42,7 @@ class AzkarDetailsView extends StatelessWidget {
           }
 
           final azkar = provider
-              .getAzkarByCategory(categoryKey)
+              .getAzkarByCategory(widget.categoryKey)
               .where(
                 (z) =>
                     z.content.trim().toLowerCase() != 'stop' &&
@@ -52,12 +65,10 @@ class AzkarDetailsView extends StatelessWidget {
               return Card(
                 color: AppColors.blackColor,
                 margin: const EdgeInsets.only(bottom: 12),
-
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                   side: BorderSide(color: AppColors.goldColor, width: 1.2),
                 ),
-
                 child: Padding(
                   padding: const EdgeInsets.all(14),
                   child: Column(
@@ -68,11 +79,8 @@ class AzkarDetailsView extends StatelessWidget {
                         textAlign: TextAlign.right,
                         style: AppStyle.bold16WhiteJN,
                       ),
-
                       SizedBox(height: context.width * 0.04),
-
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Container(
                             padding: const EdgeInsets.symmetric(
@@ -92,7 +100,6 @@ class AzkarDetailsView extends StatelessWidget {
                           ),
                         ],
                       ),
-
                       if (z.description.isNotEmpty) ...[
                         SizedBox(height: context.width * 0.03),
                         Text(
