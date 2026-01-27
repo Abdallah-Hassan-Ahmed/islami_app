@@ -19,6 +19,11 @@ class AppImages {
   static const String maskSepha = '$basePath/Maskgroup.png';
   static const String bodySepha = '$basePath/SebhaBody 1.png';
 
+  static const String azkarSop7 = '$basePath/azkarSbah.png';
+  static const String azkarMsaa = '$basePath/azkarMsaa.png';
+  static const String azkarNom = '$basePath/azkarNom.png';
+  static const String azkarAstiqaz = '$basePath/azkarAstiqaz.png';
+
   static const String onBoarding2 = '$basePath/onBoarding2.png';
   static const String onBoarding3 = '$basePath/onBoarding3.png';
   static const String onBoarding4 = '$basePath/onBoarbing4.png';

@@ -55,20 +55,16 @@ class RadioModelProvider extends ChangeNotifier {
         return;
       }
 
-      // 🔴 Reset mute عند تغيير الراديو
       isMuted = false;
       mutedIndex = null;
       await _player.setVolume(1.0);
 
-      // ⏳ بدأ تحميل الصوت
       loadingIndex = index;
       isAudioLoading = true;
       notifyListeners();
 
-      // إيقاف أي راديو شغال
       await _player.stop();
 
-      // تشغيل الراديو الجديد
       await _player.play(
         UrlSource(radios[index].url),
       );
@@ -76,7 +72,6 @@ class RadioModelProvider extends ChangeNotifier {
       currentPlayingIndex = index;
       isPlaying = true;
 
-      // انتهى التحميل
       isAudioLoading = false;
       loadingIndex = null;
 
@@ -89,11 +84,8 @@ class RadioModelProvider extends ChangeNotifier {
     }
   }
 
-  // =====================
-  // Mute / Unmute
-  // =====================
+
   Future<void> toggleMute(int index) async {
-    // الميوت بس على الراديو اللي شغال
     if (currentPlayingIndex != index) return;
 
     isMuted = !isMuted;
@@ -103,9 +95,7 @@ class RadioModelProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  // =====================
-  // Dispose
-  // =====================
+
   @override
   void dispose() {
     _player.dispose();

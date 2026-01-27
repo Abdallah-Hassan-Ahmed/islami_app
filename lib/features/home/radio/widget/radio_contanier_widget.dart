@@ -24,7 +24,6 @@ class RadioContainer extends StatelessWidget {
       ),
       child: Stack(
         children: [
-          // الخلفية
           Consumer<RadioModelProvider>(
             builder: (context, provider, _) {
               final bool isCurrentPlaying =
@@ -39,7 +38,7 @@ class RadioContainer extends StatelessWidget {
             },
           ),
 
-          // اسم الإذاعة
+          
           Padding(
             padding: EdgeInsets.only(top: context.height * 0.02),
             child: Align(
@@ -72,7 +71,6 @@ class RadioContainer extends StatelessWidget {
                     );
                   }
 
-                  // ▶️ / ⏸️
                   return GestureDetector(
                     onTap: () {
                       provider.playRadio(index);
@@ -89,7 +87,6 @@ class RadioContainer extends StatelessWidget {
             ),
           ),
 
-          // أيقونة الصوت
           Padding(
             padding: EdgeInsets.only(
               left: context.height * 0.2,
@@ -126,7 +123,7 @@ class RadioContainer extends StatelessWidget {
     return ClipRect(
       child: Align(
         alignment: Alignment.topCenter,
-        heightFactor: 0.6, // 👈 نص الصورة فقط
+        heightFactor: 0.6,
         child: Image.asset(
           AppImages.runAudioBG,
           width: double.infinity,

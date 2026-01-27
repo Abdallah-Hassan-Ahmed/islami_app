@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:islami_app/core/constants/const_data.dart';
 import 'package:islami_app/core/themes/app_images.dart';
 import 'package:islami_app/core/themes/app_style.dart';
+import 'package:islami_app/features/home/sepha/sepha_pref_helper.dart';
 
 class SephaView extends StatefulWidget {
-  SephaView({super.key});
+  const SephaView({super.key});
 
   @override
   State<SephaView> createState() => _SephaViewState();
@@ -15,8 +16,7 @@ class _SephaViewState extends State<SephaView> {
   double turns = 0;
   int next = 0;
 
-  bool isDone = false;
-  List<String> azkar = [
+  final List<String> azkar = [
     'سبحان الله',
     'الحمد لله',
     'لا اله الا الله',
@@ -24,18 +24,52 @@ class _SephaViewState extends State<SephaView> {
   ];
 
   @override
+  void initState() {
+    super.initState();
+    _loadSaved();
+  }
+
+  Future<void> _loadSaved() async {
+    final data = await SephaPrefHelper.load();
+    setState(() {
+      counter = data['counter'];
+      turns = data['turns'];
+      next = data['next'];
+    });
+  }
+
+  Future<void> _onTap() async {
+    counter++;
+
+    if (counter > 132) {
+      counter = 0;
+      turns = 0;
+      next = 0;
+    } else {
+      next = ((counter - 1) ~/ 33) % azkar.length;
+      turns += (1 / 30);
+    }
+
+    await SephaPrefHelper.save(counter: counter, turns: turns, next: next);
+
+    setState(() {});
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return SizedBox.expand(
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          Text("سَبِّحِ اسْمَ رَبِّكَ الأعلى ", style: AppStyle.bold36White),
-          SizedBox(height: context.height * 0.02),
-          SizedBox(
-            child: Stack(
+    return GestureDetector(
+      onTap: _onTap,
+      child: SizedBox.expand(
+        child: Column(
+          children: [
+            Text("سَبِّحِ اسْمَ رَبِّكَ الأعلى", style: AppStyle.bold36White),
+            SizedBox(height: context.height * 0.02),
+
+            Stack(
+              alignment: Alignment.center,
               children: [
-                Align(
-                  alignment: Alignment.topCenter,
+                Positioned(
+                  top: 0,
                   child: Container(
                     margin: EdgeInsets.only(left: context.width * 0.12),
                     child: Image.asset(
@@ -44,53 +78,43 @@ class _SephaViewState extends State<SephaView> {
                     ),
                   ),
                 ),
-                Align(
-                  alignment: Alignment.center,
-                  child: Container(
-                    margin: EdgeInsets.only(top: context.height * 0.09),
-                    child: AnimatedRotation(
-                      turns: turns,
-                      duration: const Duration(milliseconds: 300),
-                      curve: Curves.easeOut,
-                      child: Image.asset(
-                        AppImages.bodySepha,
-                        height: context.height * 0.45,
-                        width: context.height * 0.45,
-                      ),
+
+                Container(
+                  margin: EdgeInsets.only(top: context.height * 0.09),
+                  child: AnimatedRotation(
+                    turns: turns,
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.easeOut,
+                    child: Image.asset(
+                      AppImages.bodySepha,
+                      height: context.height * 0.45,
+                      width: context.height * 0.45,
                     ),
                   ),
                 ),
-                Align(
-                  alignment: Alignment.center,
-                  child: GestureDetector(
-                    onTap: () {
-                      counter++;
-                      
-                      if (counter > 132) {
-                        counter = 0;
-                      }
-                      
-                      next = ((counter - 1) ~/ 33) % azkar.length;
-                      turns += (1 / 30);
-                      setState(() {});
-                    },
-                    child: Container(
-                      margin: EdgeInsets.only(top: context.height * 0.25),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(azkar[next], style: AppStyle.bold36White),
-                          SizedBox(height: context.height * 0.02),
-                          Text("$counter", style: AppStyle.bold36White),
-                        ],
-                      ),
+
+                Container(
+                  margin: EdgeInsets.only(top: context.height * 0.1),
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          azkar[next],
+                          style: AppStyle.bold36White,
+                          textAlign: TextAlign.center,
+                        ),
+                        SizedBox(height: context.height * 0.025),
+                        Text("$counter", style: AppStyle.bold36White),
+                      ],
                     ),
                   ),
                 ),
               ],
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

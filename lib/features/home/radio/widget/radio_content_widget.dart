@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:islami_app/core/constants/const_data.dart';
 import 'package:islami_app/core/providers/radio_provider.dart';
+import 'package:islami_app/core/themes/app_colors.dart';
+import 'package:islami_app/core/themes/app_style.dart';
 import 'package:islami_app/features/home/radio/widget/radio_contanier_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -13,12 +15,12 @@ class RadioContent extends StatelessWidget {
       builder: (context, value, child) {
         // Loading
         if (value.isLoading) {
-          return const Center(child: CircularProgressIndicator());
+          return  Center(child: CircularProgressIndicator( color: AppColors.goldColor,));
         }
 
         // Error
         if (value.errorMessage != null) {
-          return Center(child: Text(value.errorMessage!));
+          return Center(child: Text(value.errorMessage! , style:AppStyle.bold20White ,));
         }
 
         return ListView.separated(

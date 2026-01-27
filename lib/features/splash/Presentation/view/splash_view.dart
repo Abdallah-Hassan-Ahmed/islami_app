@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:islami_app/core/themes/app_images.dart';
+import 'package:islami_app/features/home/home_view.dart';
 import 'package:islami_app/features/introduction/presentation/view/on_boarding_view.dart';
+import 'package:islami_app/features/introduction/presentation/widgets/shared_pref_helper.dart';
 import 'package:islami_app/features/splash/Presentation/widgets/mosue01_widget.dart';
 import 'package:islami_app/features/splash/Presentation/widgets/shape_widget.dart';
 
@@ -29,21 +31,36 @@ class _SplashViewState extends State<SplashView>
     );
 
     _logoSlideAnimation = Tween<Offset>(
-      begin: const Offset(0, -1.2), // من فوق الشاشة
-      end: Offset.zero, // في المنتصف
-    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOutCubic));
+      begin: const Offset(0, -1.2),
+      end: Offset.zero,
+    ).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeOutCubic),
+    );
 
     _logoFadeAnimation = Tween<double>(
       begin: 0,
       end: 1,
-    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeIn));
+    ).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeIn),
+    );
 
     _controller.forward();
-    Future.delayed(const Duration(seconds: 3), () {
-      if (!mounted) return;
 
-      Navigator.pushReplacementNamed(context, OnBoardingView.routeName);
-    });
+    _navigate();
+  }
+
+  Future<void> _navigate() async {
+    await Future.delayed(const Duration(seconds: 3));
+
+    if (!mounted) return;
+
+    final seen = await SharedPrefHelper.isOnBoardingSeen();
+
+    Navigator.pushNamedAndRemoveUntil(
+      context,
+      seen ? HomeView.routeName : OnBoardingView.routeName,
+      (route) => false, 
+    );
   }
 
   @override

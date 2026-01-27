@@ -13,8 +13,8 @@ class PrayTime {
     required this.asr,
     required this.maghrib,
     required this.isha,
-    
   });
+
 
   factory PrayTime.fromJson(Map<String, dynamic> json) {
     return PrayTime(
@@ -25,5 +25,10 @@ class PrayTime {
       maghrib: json['Maghrib'],
       isha: json['Isha'],
     );
+  }
+
+
+  factory PrayTime.fromResponse(Map<String, dynamic> json) {
+    return PrayTime.fromJson(json['data']['timings']);
   }
 }

@@ -4,23 +4,30 @@ import 'package:islami_app/core/constants/const_data.dart';
 import 'package:islami_app/features/home/time/widget/pray_time_container.dart';
 
 class SliderWidget extends StatelessWidget {
-  const SliderWidget({super.key});
+  final List<Map<String, String>> items;
+
+  const SliderWidget({
+    super.key,
+    required this.items,
+  });
 
   @override
   Widget build(BuildContext context) {
     return CarouselSlider(
-      options: CarouselOptions(
-        height: context.height * 0.14,
-        enlargeCenterPage: true,
-        viewportFraction: 0.3,
-      ),
-      items: List.generate(11, (index) => index + 1).map((i) {
-        return Builder(
-          builder: (BuildContext context) {
-            return PrayContainer();
-          },
-        );
-      }).toList(),
+  options: CarouselOptions(
+    height: context.height * 0.17,
+    enlargeCenterPage: true,
+    viewportFraction: 0.32,
+    enlargeFactor: 0.2,
+  ),
+  items: items.map((item) {
+    return PrayContainer(
+      name: item['name']!,
+      time: item['time']!,
+      period: item['period']!,
     );
+  }).toList(),
+);
+
   }
 }

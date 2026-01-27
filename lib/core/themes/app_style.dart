@@ -7,6 +7,12 @@ class AppStyle {
     fontSize: 16,
     fontWeight: FontWeight.w700,
   );
+  static TextStyle bold16WhiteJN = TextStyle(
+    color: Color(0xffFEFFE8),
+    fontSize: 16,
+    fontWeight: FontWeight.w700,
+    fontFamily: 'Janna',
+  );
   static TextStyle bold16BlackJJ = TextStyle(
     color: AppColors.blackColor,
     fontSize: 16,
@@ -17,11 +23,15 @@ class AppStyle {
     color: AppColors.blackColor,
     fontSize: 20,
     fontWeight: FontWeight.w700,
+        fontFamily: 'Janna',
+
   );
   static TextStyle bold20White = TextStyle(
     color: AppColors.whiteColor,
     fontSize: 20,
     fontWeight: FontWeight.w700,
+        fontFamily: 'Janna',
+
   );
   static TextStyle bold20Gold = TextStyle(
     color: AppColors.goldColor,
@@ -32,6 +42,8 @@ class AppStyle {
     color: AppColors.blackColor,
     fontSize: 12,
     fontWeight: FontWeight.w700,
+            fontFamily: 'Janna',
+
   );
   static TextStyle bold18Black = TextStyle(
     color: AppColors.blackColor,

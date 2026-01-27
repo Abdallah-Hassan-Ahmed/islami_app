@@ -5,6 +5,7 @@ import 'package:islami_app/core/themes/app_style.dart';
 import 'package:islami_app/features/data/models/onBoarding_model.dart';
 import 'package:islami_app/features/home/home_view.dart';
 import 'package:islami_app/features/introduction/presentation/widgets/all_onboarding_bodey_widget.dart';
+import 'package:islami_app/features/introduction/presentation/widgets/shared_pref_helper.dart';
 
 class OnBoardingView extends StatefulWidget {
   const OnBoardingView({super.key});
@@ -16,8 +17,9 @@ class OnBoardingView extends StatefulWidget {
 }
 
 class _OnBoardingViewState extends State<OnBoardingView> {
-  static int selectedIndex = 0;
-  PageController controller = PageController();
+  int selectedIndex = 0;
+  final PageController controller = PageController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,32 +29,36 @@ class _OnBoardingViewState extends State<OnBoardingView> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            /// الصفحات
             Expanded(
               child: PageView.builder(
-                onPageChanged: (value) {
-                  setState(() {
-                    selectedIndex = value;
-                  });
-                },
                 controller: controller,
                 itemCount: OnBoardingModel.onBoarding.length,
+                onPageChanged: (index) {
+                  setState(() {
+                    selectedIndex = index;
+                  });
+                },
                 itemBuilder: (context, index) {
+                  final item = OnBoardingModel.onBoarding[index];
                   return AllOnBoardingBodyWidget(
-                    image: OnBoardingModel.onBoarding[index].image,
-                    text: OnBoardingModel.onBoarding[index].text,
-                    supText: OnBoardingModel.onBoarding[index].supText,
-                    supText2: OnBoardingModel.onBoarding[index].supText2,
+                    image: item.image,
+                    text: item.text,
+                    supText: item.supText,
+                    supText2: item.supText2,
                   );
                 },
               ),
             ),
+
             Padding(
-              padding: EdgeInsets.only(bottom: context.height * 0.033),
+              padding: EdgeInsets.only(bottom: context.height * 0.03),
               child: SizedBox(
                 height: context.height * 0.06,
                 child: Stack(
-                  alignment: AlignmentGeometry.center,
+                  alignment: Alignment.center,
                   children: [
+                    /// Back
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Visibility(
@@ -60,7 +66,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                         child: TextButton(
                           onPressed: () {
                             controller.previousPage(
-                              duration: Duration(milliseconds: 300),
+                              duration: const Duration(milliseconds: 300),
                               curve: Curves.easeInOut,
                             );
                           },
@@ -73,47 +79,48 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                         ),
                       ),
                     ),
+
                     Align(
                       alignment: Alignment.center,
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
-                        children: [
-                          DotRow(0),
-                          DotRow(1),
-                          DotRow(2),
-                          DotRow(3),
-                          DotRow(4),
-                        ],
+                        children: List.generate(
+                          OnBoardingModel.onBoarding.length,
+                          (index) => _dotItem(index),
+                        ),
                       ),
                     ),
-                    // Spacer(),
+
+                    /// Next / Finish
                     Align(
                       alignment: Alignment.centerRight,
-                      child: Visibility(
-                        visible: selectedIndex <= 4,
-                        child: TextButton(
-                          onPressed: () {
-                            if (selectedIndex ==
-                                OnBoardingModel.onBoarding.length - 1) {
-                              Navigator.pushNamedAndRemoveUntil(
-                                context,
-                                HomeView.routeName,
-                                (route) => false,
-                              );
-                            } else {
-                              controller.nextPage(
-                                duration: const Duration(milliseconds: 300),
-                                curve: Curves.easeInOut,
-                              );
-                            }
-                          },
-                          child: Text(
-                            selectedIndex <= 3 ? "Next" : "Finish",
-                            style: TextStyle(
-                              color: AppColors.goldColor,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w700,
-                            ),
+                      child: TextButton(
+                        onPressed: () async {
+                          if (selectedIndex ==
+                              OnBoardingModel.onBoarding.length - 1) {
+                            await SharedPrefHelper.setOnBoardingSeen();
+
+                            Navigator.pushNamedAndRemoveUntil(
+                              context,
+                              HomeView.routeName,
+                              (route) => false,
+                            );
+                          } else {
+                            controller.nextPage(
+                              duration: const Duration(milliseconds: 300),
+                              curve: Curves.easeInOut,
+                            );
+                          }
+                        },
+                        child: Text(
+                          selectedIndex ==
+                                  OnBoardingModel.onBoarding.length - 1
+                              ? "Finish"
+                              : "Next",
+                          style: TextStyle(
+                            color: AppColors.goldColor,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700,
                           ),
                         ),
                       ),
@@ -128,14 +135,10 @@ class _OnBoardingViewState extends State<OnBoardingView> {
     );
   }
 
-  // ignore: non_constant_identifier_names
-  Widget DotRow(int index) {
-    bool isSelected;
-    if (selectedIndex == index) {
-      isSelected = true;
-    } else {
-      isSelected = false;
-    }
+  /// Widget للنقطة
+  Widget _dotItem(int index) {
+    final bool isSelected = selectedIndex == index;
+
     return Padding(
       padding: const EdgeInsets.all(5.0),
       child: InkWell(
@@ -151,9 +154,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
           width: isSelected ? 18 : 7,
           decoration: BoxDecoration(
             color: isSelected ? AppColors.goldColor : AppColors.grayColor,
-            borderRadius: isSelected
-                ? BorderRadius.circular(16)
-                : BorderRadius.circular(9999),
+            borderRadius: BorderRadius.circular(999),
           ),
         ),
       ),

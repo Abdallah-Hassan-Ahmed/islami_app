@@ -16,7 +16,6 @@ class SuraDetails extends StatefulWidget {
 }
 
 class _SuraDetailsState extends State<SuraDetails> {
-
   String SuraContent = '';
 
   @override
@@ -28,8 +27,10 @@ class _SuraDetailsState extends State<SuraDetails> {
     return Scaffold(
       backgroundColor: AppColors.blackColor,
 
-      appBar:AppBarWidget(text: QuranResources.englishQuranSurahsLidt,number: num,)
-,
+      appBar: AppBarWidget(
+        text: QuranResources.englishQuranSurahsLidt,
+        number: num,
+      ),
       body: SizedBox.expand(
         child: Column(
           mainAxisSize: MainAxisSize.max,
@@ -44,7 +45,7 @@ class _SuraDetailsState extends State<SuraDetails> {
                 children: [
                   Image.asset(AppImages.cornerL),
                   Text(
-                    QuranResources.arabicAuranSurasList[num ],
+                    QuranResources.arabicAuranSurasList[num],
                     style: AppStyle.bold20Black.copyWith(
                       color: AppColors.goldColor,
                     ),
@@ -96,7 +97,9 @@ class _SuraDetailsState extends State<SuraDetails> {
   }
 
   void loadingSura(int index) async {
-    String contentSura = await rootBundle.loadString('assets/files/${index+1}.txt');
+    String contentSura = await rootBundle.loadString(
+      'assets/files/${index + 1}.txt',
+    );
     List<String> sura = contentSura.split("\n");
     for (var i = 0; i < sura.length; i++) {
       sura[i] = '${sura[i]}(${i + 1}) ';

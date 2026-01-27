@@ -18,7 +18,6 @@ class _HadethItemState extends State<HadethItem> {
   HadethModel? hadeth;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     loadingHadith(widget.hadithIndex);
   }
@@ -28,8 +27,7 @@ class _HadethItemState extends State<HadethItem> {
     return Container(
       margin: EdgeInsets.only(
         bottom: context.height * 0.02,
-        // left: context.width * 0.01,
-        // right: context.width * 0.01,
+      
       ),
       // height: context.height * 0.75,
       width: context.width * 0.7,
@@ -95,8 +93,8 @@ class _HadethItemState extends State<HadethItem> {
             ),
           ),
           Positioned.fill(
-            top: context.height * 0.09, // نهاية الهيدر
-            bottom: context.height * 0.12, // بداية الفوتر
+            top: context.height * 0.09,
+            bottom: context.height * 0.12, 
             child: hadeth == null
                 ? Center(
                     child: CircularProgressIndicator(
