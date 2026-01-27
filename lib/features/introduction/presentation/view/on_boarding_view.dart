@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:islami_app/core/constants/const_data.dart';
-import 'package:islami_app/core/themes/app_colors.dart';
-import 'package:islami_app/core/themes/app_style.dart';
-import 'package:islami_app/features/data/models/onBoarding_model.dart';
-import 'package:islami_app/features/home/home_view.dart';
+import 'package:islami_app/core/extention/media_query_extention.dart';
+import 'package:islami_app/core/utils/app_colors.dart';
+import 'package:islami_app/core/utils/app_style.dart';
+import 'package:islami_app/features/introduction/data/model/onBoarding_model.dart';
+import 'package:islami_app/features/home/presentation/view/home_view.dart';
 import 'package:islami_app/features/introduction/presentation/widgets/all_onboarding_bodey_widget.dart';
-import 'package:islami_app/features/introduction/presentation/widgets/shared_pref_helper.dart';
+import 'package:islami_app/features/introduction/presentation/manager/shared_pref_helper.dart';
 
 class OnBoardingView extends StatefulWidget {
   const OnBoardingView({super.key});
@@ -29,7 +29,6 @@ class _OnBoardingViewState extends State<OnBoardingView> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            /// الصفحات
             Expanded(
               child: PageView.builder(
                 controller: controller,
@@ -91,7 +90,6 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                       ),
                     ),
 
-                    /// Next / Finish
                     Align(
                       alignment: Alignment.centerRight,
                       child: TextButton(
@@ -135,7 +133,6 @@ class _OnBoardingViewState extends State<OnBoardingView> {
     );
   }
 
-  /// Widget للنقطة
   Widget _dotItem(int index) {
     final bool isSelected = selectedIndex == index;
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:islami_app/core/constants/const_data.dart';
-import 'package:islami_app/core/themes/app_images.dart';
+import 'package:islami_app/core/extention/media_query_extention.dart';
+import 'package:islami_app/core/utils/app_images.dart';
 
 class Mosqe01Widget extends StatelessWidget {
   const Mosqe01Widget({super.key});

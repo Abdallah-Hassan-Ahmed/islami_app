@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:islami_app/core/providers/azkar_provider.dart';
-import 'package:islami_app/features/introduction/presentation/widgets/shared_pref_helper.dart';
+import 'package:islami_app/features/time/presentation/manager/azkar_provider.dart';
+import 'package:islami_app/features/introduction/presentation/manager/shared_pref_helper.dart';
 import 'package:provider/provider.dart';
 
-import 'package:islami_app/core/providers/most_recently_provider.dart';
-import 'package:islami_app/core/providers/time_provider.dart';
-import 'package:islami_app/core/themes/app_themes.dart';
+import 'package:islami_app/features/quran/presentation/manager/most_recently_provider.dart';
+import 'package:islami_app/features/time/presentation/manager/time_provider.dart';
+import 'package:islami_app/config/themes/app_themes.dart';
 
-import 'package:islami_app/features/home/home_view.dart';
-import 'package:islami_app/features/home/quran/quran_view.dart';
-import 'package:islami_app/features/home/quran/sura_detalis_view.dart';
+import 'package:islami_app/features/home/presentation/view/home_view.dart';
+import 'package:islami_app/features/quran/presentation/view/quran_view.dart';
+import 'package:islami_app/features/quran/presentation/view/sura_detalis_view.dart';
 import 'package:islami_app/features/introduction/presentation/view/on_boarding_view.dart';
 import 'package:islami_app/features/splash/Presentation/view/splash_view.dart';
 

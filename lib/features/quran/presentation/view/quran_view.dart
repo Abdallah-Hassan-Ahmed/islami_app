@@ -1,0 +1,46 @@
+import 'package:flutter/material.dart';
+import 'package:islami_app/core/extention/media_query_extention.dart';
+import 'package:islami_app/core/utils/app_style.dart';
+import 'package:islami_app/features/quran/presentation/widget/most_resently_list_widget.dart';
+import 'package:islami_app/features/quran/presentation/widget/sura_name_search_widget.dart';
+import 'package:islami_app/features/quran/presentation/widget/sure_list.dart';
+
+class QuranView extends StatefulWidget {
+  const QuranView({super.key});
+  static const routeName = "quranView";
+
+  @override
+  State<QuranView> createState() => _QuranViewState();
+}
+
+class _QuranViewState extends State<QuranView> {
+  List<int> filterIndex = List.generate(114, (index) => index);
+  bool showMostRecently = true;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: context.width * 0.04),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SuraNameWidget(
+            onSearch: (list , searchText) {
+              setState(() {
+                showMostRecently = searchText.isEmpty;
+                filterIndex = list.isEmpty
+                    ? List.generate(114, (i) => i)
+                    : list;
+              });
+            },
+          ),
+          if (showMostRecently) MostRecentlyList(),
+          SizedBox(height: context.height * 0.02),
+          Text("Suras List", style: AppStyle.bold16White),
+          SizedBox(height: context.height * 0.001),
+          Expanded(child: SureList(filterIndex: filterIndex)),
+        ],
+      ),
+    );
+  }
+}

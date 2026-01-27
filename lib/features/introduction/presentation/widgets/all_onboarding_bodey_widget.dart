@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:islami_app/core/constants/const_data.dart';
-import 'package:islami_app/core/themes/app_colors.dart';
-import 'package:islami_app/core/themes/app_style.dart';
-import 'package:islami_app/features/home/quran/widget/Iislami_widget.dart';
+import 'package:islami_app/core/extention/media_query_extention.dart';
+import 'package:islami_app/core/utils/app_colors.dart';
+import 'package:islami_app/core/utils/app_style.dart';
+import 'package:islami_app/features/quran/presentation/widget/Iislami_widget.dart';
 
 class AllOnBoardingBodyWidget extends StatelessWidget {
   const AllOnBoardingBodyWidget({

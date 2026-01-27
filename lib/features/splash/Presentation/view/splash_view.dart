@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:islami_app/core/themes/app_images.dart';
-import 'package:islami_app/features/home/home_view.dart';
+import 'package:islami_app/core/utils/app_images.dart';
+import 'package:islami_app/features/home/presentation/view/home_view.dart';
 import 'package:islami_app/features/introduction/presentation/view/on_boarding_view.dart';
-import 'package:islami_app/features/introduction/presentation/widgets/shared_pref_helper.dart';
+import 'package:islami_app/features/introduction/presentation/manager/shared_pref_helper.dart';
 import 'package:islami_app/features/splash/Presentation/widgets/mosue01_widget.dart';
 import 'package:islami_app/features/splash/Presentation/widgets/shape_widget.dart';
 
